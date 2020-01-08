@@ -19,13 +19,13 @@
     <script>
         let canvas = document.querySelector("canvas"); //获取canvas元素
         let canCon = canvas.getContext("2d"); //获取canvas元素的渲染上下文
-        var img = new Image();
-        img.src = 'images/-2c18482ba29f7e54.jpg';
-        img.onload = function() {
-            var ptrn = canCon.createPattern(img, 'repeat');
-            canCon.fillStyle = ptrn;
-            canCon.fillRect(0, 0, 700, 700)
-        }
+
+        var path1 = new Path2D();
+        path1.rect(10, 10, 100, 100);
+        var path2 = new Path2D(path1);
+        path2.moveTo(220, 60);
+        path2.arc(170, 60, 50, 0, Math.PI * 2);
+        canCon.stroke(path2)
     </script>
 </body>
 
