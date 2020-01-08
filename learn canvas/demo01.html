@@ -10,7 +10,7 @@
 <style>
     canvas {
         display: block;
-        background-color: rgb(255, 255, 255);
+        background-color: rgb(14, 173, 160);
     }
 </style>
 
@@ -19,16 +19,24 @@
     <script>
         let canvas = document.querySelector("canvas") //获取canvas元素
         let canCon = canvas.getContext("2d") //获取canvas元素的渲染上下文
-        canCon.beginPath();
-        canCon.moveTo(20, 200);
-        canCon.lineTo(20, 20);
-        canCon.moveTo(20, 200);
-        canCon.lineTo(200, 200);
-        canCon.moveTo(75, 50);
-        canCon.lineTo(100, 50);
-        canCon.moveTo(100, 25);
-        canCon.lineTo(125, 25);
-        canCon.stroke()
+        var offset = 0;
+
+        function draw() {
+            canCon.clearRect(0, 0, canvas.width, canvas.height);
+            canCon.setLineDash([6, 6]);
+            canCon.lineDashOffset = -offset;
+            canCon.strokeRect(10, 10, 200, 200)
+        }
+
+        function march() {
+            offset++;
+            if (offset > 15) {
+                offset = 0;
+            }
+            draw();
+            setTimeout(march, 20)
+        }
+        march();
     </script>
 </body>
 
