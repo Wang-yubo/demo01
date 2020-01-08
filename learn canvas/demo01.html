@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>learn canvas</title>
+</head>
+<style>
+    canvas {
+        display: block;
+        background-color: rgb(255, 255, 255);
+    }
+</style>
+
+<body>
+    <canvas width="500" height="500">如果浏览器版本过低，则此处文字会显示出来</canvas>
+    <script>
+        let canvas = document.querySelector("canvas") //获取canvas元素
+        let canCon = canvas.getContext("2d") //获取canvas元素的渲染上下文
+        canCon.beginPath();
+        canCon.moveTo(20, 200);
+        canCon.lineTo(20, 20);
+        canCon.moveTo(20, 200);
+        canCon.lineTo(200, 200);
+        canCon.moveTo(75, 50);
+        canCon.lineTo(100, 50);
+        canCon.moveTo(100, 25);
+        canCon.lineTo(125, 25);
+        canCon.stroke()
+    </script>
+</body>
+
+</html>
