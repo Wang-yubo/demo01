@@ -15,28 +15,17 @@
 </style>
 
 <body>
-    <canvas width="500" height="500">如果浏览器版本过低，则此处文字会显示出来</canvas>
+    <canvas width="700" height="700">如果浏览器版本过低，则此处文字会显示出来</canvas>
     <script>
-        let canvas = document.querySelector("canvas") //获取canvas元素
-        let canCon = canvas.getContext("2d") //获取canvas元素的渲染上下文
-        var offset = 0;
-
-        function draw() {
-            canCon.clearRect(0, 0, canvas.width, canvas.height);
-            canCon.setLineDash([6, 6]);
-            canCon.lineDashOffset = -offset;
-            canCon.strokeRect(10, 10, 200, 200)
+        let canvas = document.querySelector("canvas"); //获取canvas元素
+        let canCon = canvas.getContext("2d"); //获取canvas元素的渲染上下文
+        var img = new Image();
+        img.src = 'images/-2c18482ba29f7e54.jpg';
+        img.onload = function() {
+            var ptrn = canCon.createPattern(img, 'repeat');
+            canCon.fillStyle = ptrn;
+            canCon.fillRect(0, 0, 700, 700)
         }
-
-        function march() {
-            offset++;
-            if (offset > 15) {
-                offset = 0;
-            }
-            draw();
-            setTimeout(march, 20)
-        }
-        march();
     </script>
 </body>
 
