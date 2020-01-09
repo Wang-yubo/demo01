@@ -19,11 +19,9 @@
     <script>
         let canvas = document.querySelector("canvas"); //获取canvas元素
         let canCon = canvas.getContext("2d"); //获取canvas元素的渲染上下文
-        let img = new Image();
-        img.src = 'images/-2c18482ba29f7e54.jpg'
-        img.onload = function() {
-            canCon.drawImage(img, 0, 0, 500, 500, 350, 350, 200, 200)
-        }
+        canCon.fillRect(0, 0, 150, 150)
+        canCon.rotate(Math.PI / 4)
+        canCon.fillRect(300, 100, 150, 150)
     </script>
 </body>
 
