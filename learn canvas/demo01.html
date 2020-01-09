@@ -19,11 +19,11 @@
     <script>
         let canvas = document.querySelector("canvas"); //获取canvas元素
         let canCon = canvas.getContext("2d"); //获取canvas元素的渲染上下文
-
-        canCon.font = "50px serif";
-        var text = canCon.fillText("hello world", 50, 50);
-        canCon.strokeText("hello world", 150, 200);
-        console.log(canCon.measureText(text));
+        let img = new Image();
+        img.src = 'images/-2c18482ba29f7e54.jpg'
+        img.onload = function() {
+            canCon.drawImage(img, 0, 0, 500, 500, 350, 350, 200, 200)
+        }
     </script>
 </body>
 
