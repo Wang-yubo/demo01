@@ -8,38 +8,39 @@
     <title>learn canvas</title>
 </head>
 <style>
-    canvas1,
-    canvas2 {
+    canvas1 {
         display: block;
         background-color: black;
+    }
+    
+    button {
+        display: block;
     }
 </style>
 
 <body>
-    <canvas class="canvas1" width="500" height="500">如果浏览器版本过低，则此处文字会显示出来</canvas>
-    <canvas class="canvas2" width="500" height="500">如果浏览器版本过低，则此处文字会显示出来</canvas>
+    <canvas></canvas>
     <script>
         let canvas1 = document.querySelector(".canvas1");
         let canCon1 = canvas1.getContext("2d");
-        let canvas2 = document.querySelector(".canvas2");
-        let canCon2 = canvas2.getContext("2d");
-
-        let img = new Image();
-        let imgData;
-        img.src = 'images/艺术 - 11.jpg';
-        let myImgData = canCon2.createImageData(500, 500);
-
-        function random(min, max) {
+        ~~ function setSize() {
+            window.onresize = arguments.callee;
+            w = window.innerWidth;
+            h = window.innerHeight;
+            canvas.width = w;
+            canvas.height = h;
+        }();
+        //面向对象开始编程
+        function randon(min, max) {
             return Math.random() * (max - min) + min
         }
 
-        for (let i = 0, len = myImgData.data.length; i < len; i++) {
-            myImgData.data[i] = Math.floor(random(0, 255))
-        }
-        img.onload = function() {
-            canCon1.drawImage(img, 0, 0, 500, 500)
-            imgData = canCon1.getImageData(0, 0, 500, 500);
-            canCon2.putImageData(myImgData, 0, 0)
+
+
+        class Rain {
+            constructor() {
+
+            }
         }
     </script>
 </body>

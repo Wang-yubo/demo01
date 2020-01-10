@@ -74,7 +74,7 @@
   canCon.globalAlpha = 0.3;
 ```
 
-<img src="C:\Users\王雨波\AppData\Roaming\Typora\typora-user-images\image-20200108164034907.png" alt="image-20200108164034907" style="zoom:50%;" />
+<img src="C:\Users\王雨波\AppData\Roaming\Typora\typora-user-images\image-20200108164034907.png" alt="image-20200108164034907"  />
 
 > **注意：在这行代码出现之前绘制的图形不会有透明效果，他只会影响该命令之后的代码。canvas是很注重代码顺序的。**
 

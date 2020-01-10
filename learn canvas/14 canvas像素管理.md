@@ -157,3 +157,35 @@ var myImageData = canCon.createImageData(anotherImageData);
 ![image-20200110180438281](C:\Users\王雨波\AppData\Roaming\Typora\typora-user-images\image-20200110180438281.png)
 
 > ……你可真骚啊~
+
+##### 1.5 缩放和反锯齿
+
+> - 在`drawImage`()方法，第二个画布和`imageSmoothingEnabled`属性的帮助下，我们可以放大显示我们的图片及看到的详细内容（放大镜效果）
+> - `canvasRenderingContext2D.imageSmoothingEnabled`是`canvas 2D API`用来设置图片是否平滑的属性，`true`表示图片平滑（默认值），`false`表示图片不平滑。当我们获取`imageSmoothingEnabled`属性值时，它会返回最新设置的值。
+
+来做个放大镜：
+
+```js
+ <script>
+        let canvas1 = document.querySelector(".canvas1");
+        let canCon1 = canvas1.getContext("2d");
+        let canvas2 = document.querySelector(".canvas2");
+        let canCon2 = canvas2.getContext("2d");
+
+        let img = new Image();
+        img.src = 'images/杨超越.jpg';
+        let myImgData = canCon2.createImageData(500, 500);
+        canCon2.imageSmoothingEnabled = true; //控制平滑，默认就是，可以不用设置
+        img.onload = function() {
+            canCon1.drawImage(img, 0, 0, 500, 500)
+        }
+        canvas1.addEventListener("mousemove", function(ev) {
+            canCon2.drawImage(canvas1, ev.offsetX - 50, ev.offsetY - 50, 150, 150, 0, 0, 500, 500)
+        })
+    </script>
+```
+
+> 做这个放大镜核心就是这个监听事件，获取到鼠标悬停的坐标（就是第二个和第三个参数）就可以放大到画板2里面了
+
+![](F:\Code\gitDemo\learn canvas\images\放大镜效果.gif)
+
