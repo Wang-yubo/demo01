@@ -10,7 +10,7 @@
 <style>
     canvas {
         display: block;
-        background-color: rgb(14, 173, 160);
+        background-color: black;
     }
 </style>
 
@@ -19,9 +19,21 @@
     <script>
         let canvas = document.querySelector("canvas"); //获取canvas元素
         let canCon = canvas.getContext("2d"); //获取canvas元素的渲染上下文
-        canCon.fillRect(0, 0, 150, 150)
-        canCon.rotate(Math.PI / 4)
-        canCon.fillRect(300, 100, 150, 150)
+        ~~ function setSize() {
+            window.onresize = arguments.callee;
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }();
+
+        var y = 0;
+        setInterval(function() { //js里动画肯定要用定时器来实现了
+            canCon.beginPath(); //每次作画之前都要把笔抬起来，否则会出现“连笔”的情况
+            canCon.fillStyle = 'rgba(0,0,0,0.1)'
+            canCon.fillRect(0, 0, canvas.width, canvas.height)
+            canCon.fillStyle = '#fff';
+            canCon.fillRect(500, y++, 2, 10);
+            canCon.fill();
+        }, 1000 / 60)
     </script>
 </body>
 

@@ -55,6 +55,10 @@ $$
 > 可以看出，在第六个参数为true的前提下：当第五个参数为`Math.PI`时，画出了半圆的弧线，当第五个参数为`Math.PI/2`时，画出了半圆的弧线画出了3/4个圆的弧线，当第五个参数为`Math.PI/8`时，画出了半圆的弧线画出了7/8个圆的弧线。
 >
 > 总结，此时第五个参数越小，弧度越大。
+>
+> 来个示意图：
+>
+> ![](F:\Code\gitDemo\learn canvas\images\圆弧.jpg)
 
 > 把true改成false后
 >
@@ -71,3 +75,4 @@ $$
 <img src="C:\Users\王雨波\AppData\Roaming\Typora\typora-user-images\image-20200107201341271.png" alt="image-20200107201341271" style="zoom:50%;" />
 
 > 到底用true还是false还是按实际方向来
+
