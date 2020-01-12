@@ -21,8 +21,10 @@
 <body>
     <canvas></canvas>
     <script>
-        let canvas1 = document.querySelector(".canvas1");
-        let canCon1 = canvas1.getContext("2d");
+        let canvas = document.querySelector("canvas");
+        let canCon = canvas.getContext("2d");
+        let w, h;
+        let rainArry = []; //存储所有新生成的雨滴
         ~~ function setSize() {
             window.onresize = arguments.callee;
             w = window.innerWidth;
@@ -31,17 +33,69 @@
             canvas.height = h;
         }();
         //面向对象开始编程
-        function randon(min, max) {
+        function random(min, max) {
             return Math.random() * (max - min) + min
         }
-
-
 
         class Rain {
             constructor() {
 
             }
+            init() {
+                this.y = 0; //雨滴的初始化Y坐标
+                this.x = random(0, w); //雨滴的初始化x坐标
+                this.v = random(2, 4); //雨滴的随机速度
+                this.h = random(0.75 * h, 0.85 * h) //雨滴绽放的位置
+                this.r = 1;
+                this.maxR = 120;
+                this.a = 1;
+                this.va = random(0.95, 0.99);
+            }
+            draw() {
+                if (this.y < this.h) {
+                    canCon.fillStyle = "#3ff"
+                    canCon.fillRect(this.x, this.y, 2, 10);
+                } else {
+                    canCon.strokeStyle = `rgba(51,255,255,${this.a})`
+                    canCon.beginPath();
+                    canCon.arc(this.x, this.y, this.r, 0, Math.PI * 2)
+                    canCon.stroke();
+                }
+
+            }
+            move() {
+                if (this.y < this.h) {
+                    this.y += this.v;
+                } else {
+                    if (this.a > 0.05 && this.r < this.maxR) {
+                        this.r++;
+                        this.a *= this.va
+                    } else {
+                        this.init();
+                    }
+                }
+                this.draw();
+            }
         }
+
+        function createRain(num) {
+            for (let i = 0; i < num; + i++) {
+                setTimeout(function() {
+                    let rain = new Rain();
+                    rain.draw();
+                    rainArry.push(rain)
+                }, 200 * i)
+            }
+        }
+        createRain(30);
+
+        setInterval(() => {
+            canCon.fillStyle = "rgba(0,0,0,0.1)";
+            canCon.fillRect(0, 0, w, h)
+            for (let item of rainArry) {
+                item.move();
+            }
+        }, 1000 / 60);
     </script>
 </body>
 
