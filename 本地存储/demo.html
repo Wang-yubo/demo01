@@ -10,7 +10,50 @@
 
 <body>
     <script>
-        document.cookie = "age =18;expires = Fri, 01 Jan 1970 23:59:59 GMT";
+        let openRequest = indexedDB.open("school", 4); //打开一个数据库，名称为school，版本号为1
+        openRequest.onupgradeneeded = function(e) {
+            console.log("新建数据库或是版本号更新");
+            let thisDB = e.target.result;
+            if (!thisDB.objectStoreNames.contains("student")) { //判断是否已经有name条目
+                let std = thisDB.createObjectStore("student", {
+                    keyPath: "idcard"
+                }); //没有则创建name条目
+                std.createIndex("name", "name", {
+                    unique: false
+                });
+                std.createIndex("sex", "sex", {
+                    unique: false
+                });
+                std.createIndex("phoneNumber", "phoneNumber", {
+                    unique: true
+                });
+            }
+        }
+        openRequest.onsuccess = function(e) {
+            console.log("访问数据成功");
+            let db = e.target.result
+                //事务
+            let transaction = db.transaction(['student'], 'readwrite'); //写入的条目和数据的属性
+            let store = transaction.objectStore('student');
+            var person = {
+                name: "王牟牟",
+                sex: "男",
+                phoneNumber: "18080582175",
+                idcard: "2016114042",
+            }
+            let request = store.delete("2016114042");
+            request.onsuccess = function(e) {
+                var result = e.target.result;
+                console.dir(result);
+            }
+            request.onerror = function(e) {
+                console.log("Error", e.target.error.name);
+            }
+        }
+        openRequest.onerror = function(e) {
+            console.log("访问失败时");
+            console.log(e);
+        }
     </script>
 </body>
 
